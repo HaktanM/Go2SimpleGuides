@@ -7,7 +7,7 @@ Simple tricks to communicate with Unitree GO2
 ## Set wired connection settings
 * Go to settings -> Network
 * Add a new wired connection
-* Click IPv4, set manual. Add a new address using following settings: \
+* Click IPv4, set manual. Add a new address using following settings:
     - Address: 192.168.123.222 
     - Netmask: 255.255.255.0
 * Make sure this wired connection is chosen.
@@ -26,7 +26,7 @@ The password is 123
 ### Internet sharing through Ethernet Cable
 If you do not have a USB dongle or wifi router, then the expansion PC (Unitree Device) will not have a different channel to get connected to internet. However, it is possible to share internet through the ethernet cable between your pc and unitree go2 which is the chanel you use for SSH connection.
 
-Write ifconfig or ip a to terminal on the host PC
+On the host PC
 ```bash
 ifconfig
 # or
@@ -36,6 +36,7 @@ ip a
 Check 
 - What channel provides the internet for your host pc.
 - What channel is connected to unitree go2.
+  
 As an example
 - wlp129s0 provides internet to my host PC
 - enp130s0 is connected to unitree.
@@ -45,6 +46,7 @@ Then, we need to tell that we want to share internet from wlp129s0 to enp130s0. 
 sudo iptables -t nat -A POSTROUTING -o wlp129s0 -j MASQUERADE
 sudo iptables -A FORWARD -i enp130s0 -j ACCEPT
 ```
+
 Now, the host PC shares internet through the ethernet cable. Now, we need to tell expansion PC on unitree that there is internet on the ethernet cable. On the expansion pc terminal, write 
 ```bash
 sudo ip route add default via 192.168.123.222 dev eth0
