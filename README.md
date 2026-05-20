@@ -6,8 +6,8 @@ Simple tricks to communicate with Unitree GO2
 
 ## Set wired connection settings
 * Go to settings -> Network
-* Add new wired connection
-* Choose bar, IPv4, set manual. Add a new address using following settings: \
+* Add a new wired connection
+* Click IPv4, set manual. Add a new address using following settings: \
     - Address: 192.168.123.222 
     - Netmask: 255.255.255.0
 * Make sure this wired connection is chosen.
