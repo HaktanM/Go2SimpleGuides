@@ -47,24 +47,24 @@ sudo iptables -t nat -A POSTROUTING -o wlp129s0 -j MASQUERADE
 sudo iptables -A FORWARD -i enp130s0 -j ACCEPT
 ```
 
-Now, the host PC shares internet through the ethernet cable. Now, we need to tell expansion PC on unitree that there is internet on the ethernet cable. On the expansion pc terminal, write 
+Now, the host PC shares internet through the ethernet cable. we need to tell expansion PC on unitree that there is internet on the ethernet cable. On the expansion pc terminal, write
 ```bash
 sudo ip route add default via 192.168.123.222 dev eth0
 ```
 where 192.168.123.222 is the address determined at the beginning of this document.
 
-Then, check the internet connection from the expansion pc terminal.
+Then, check the internet connection. On the expansion pc terminal, write
 ```bash
 ping 8.8.8.8
 ```
 
 ### WIFI with USB Dongle in Expansion PC
-First you need to install a driver for the USB dongle. Depending on chip used in the USB, you might need a different dongle. I have used
+First you need to install a driver for the USB dongle. Depending on the chip used in the USB, you might need a different driver. The driver I have used is
 ```bash
 cd https://github.com/shenmintao/aic8800d80
 ```
 
-Then, in the expansion PC terminal, check the visible wifi list
+Once the installation is completed, check the visible wifi list. On the expension PC terminal,
 ```bash
 nmcli device wifi list
 # and check if the PC recognizes the USB dongle as a wifi device
@@ -77,7 +77,7 @@ sudo nmcli device wifi connect "WIFI_NAME" password "WIFI_PASSWORD"
 ```
 
 ### Tailscale for SSH connection through internet
-If the expansionc PC is connected to the internet, and if you want to have a SSH connection through internet, I strictly recommend you to use [TAILSCALE](https://tailscale.com/).
+If the expansionc PC is connected to the internet, and if you want to have an SSH connection through internet, I strictly recommend you to use [TAILSCALE](https://tailscale.com/).
 
 ## ROS2
 ### Installation
