@@ -98,7 +98,7 @@ sudo docker build -t unitree_go2_humble -f Dockerfile-humble .
 bash start_go2.bash
 ```
 
-- First install [Unitree SDK](https://github.com/unitreerobotics/unitree_sdk2), then install [Unitree ROS2](https://github.com/unitreerobotics/unitree_ros2).
+- First install [Unitree SDK](https://github.com/unitreerobotics/unitree_sdk2), then install [Unitree ROS2](https://github.com/unitreerobotics/unitree_ros2) in Docker.
 
 ### Usage
 Once the docker image is installed, you can start it.
