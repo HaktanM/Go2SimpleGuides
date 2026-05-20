@@ -24,7 +24,7 @@ ssh unitree@192.168.123.18 # External PC (Jetson Device)
 The password is 123
 
 ### Internet sharing through Ethernet Cable
-If you do not have a USB dongle or wifi router, then the expansion PC (Unitree Device) will not have a different channel to get connected to internet. However, it is possible to share internet through the ethernet cable between your pc and unitree go2 which is the chanel you use for SSH connection.
+If you do not have a USB dongle or wifi router, then the expansion PC will not have a different channel to get connected to internet. However, it is possible to share internet through the ethernet cable between your pc and unitree go2 which is the chanel you use for SSH connection.
 
 On the host PC
 ```bash
