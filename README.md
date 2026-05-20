@@ -61,7 +61,7 @@ ping 8.8.8.8
 ### WIFI with USB Dongle in Expansion PC
 First you need to install a driver for the USB dongle. Depending on the chip used in the USB, you might need a different driver. The driver I have used is
 ```bash
-cd https://github.com/shenmintao/aic8800d80
+https://github.com/shenmintao/aic8800d80 
 ```
 
 Once the installation is completed, check the visible wifi list. On the expension PC terminal,
@@ -98,7 +98,7 @@ sudo docker build -t unitree_go2_humble -f Dockerfile-humble .
 bash start_go2.bash
 ```
 
-- First install [Unitree SDK](https://github.com/unitreerobotics/unitree_sdk2), then install [Unitree ROS2])(https://github.com/unitreerobotics/unitree_ros2).
+- First install [Unitree SDK](https://github.com/unitreerobotics/unitree_sdk2), then install [Unitree ROS2](https://github.com/unitreerobotics/unitree_ros2).
 
 ### Usage
 Once the docker image is installed, you can start it.
