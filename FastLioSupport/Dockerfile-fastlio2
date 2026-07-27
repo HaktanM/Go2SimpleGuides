@@ -1,0 +1,66 @@
+FROM ros:jazzy-ros-base
+
+# Environment
+ENV DEBIAN_FRONTEND=noninteractive
+ENV RMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+SHELL ["/bin/bash", "-c"]
+
+# System dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    cmake \
+    build-essential \
+    wget \
+    curl \
+    libpcl-dev \
+    libeigen3-dev \
+    libboost-all-dev \
+    libceres-dev \
+    python3-colcon-common-extensions \
+    python3-rosdep \
+    python3-vcstool \
+    ros-jazzy-rmw-cyclonedds-cpp \
+    ros-jazzy-pcl-ros \
+    ros-jazzy-pcl-conversions \
+    ros-jazzy-rviz2 \
+    ros-jazzy-tf2 \
+    ros-jazzy-tf2-ros \
+    ros-jazzy-tf2-geometry-msgs \
+    python3-colcon-common-extensions \
+    nano \
+    vim \
+    terminator \
+    rsync \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install uv python package manager
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates \
+    && curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh \
+    && apt-get purge -y curl && rm -rf /var/lib/apt/lists/*
+
+# Clone livox sdk
+RUN mkdir -p /root/livox/src && \
+    cd /root/livox/src && \
+    git clone https://github.com/Livox-SDK/Livox-SDK2.git && \
+    cd Livox-SDK2 && \
+    mkdir build && \
+    cd build && \
+    cmake -DCMAKE_CXX_FLAGS="-include cstdint" .. && \
+    make -j$(nproc) && \
+    make install
+
+# Clone livox ROS2 and FastLio2
+RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash && \
+    apt-get update && \
+    mkdir -p /root/livox/ros_ws/src && \
+    cd /root/livox/ros_ws/src && \
+    git clone https://github.com/Livox-SDK/livox_ros_driver2.git && \
+    git clone https://github.com/Ericsii/FAST_LIO.git --recursive && \
+    export CXXFLAGS=\"-Wno-error=c++20-compat -include cstdint\" && \
+    cd /root/livox/ros_ws/src/livox_ros_driver2 && \
+    ./build.sh jazzy && \
+    cd /root/livox/ros_ws && \
+    source install/setup.bash && \
+    colcon build --packages-select fast_lio"
+
+CMD ["bash"]

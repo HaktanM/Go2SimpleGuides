@@ -1,0 +1,1 @@
+sudo docker build -t fastlio2 -f Dockerfile-fastlio2 .
